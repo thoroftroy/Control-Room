@@ -2,6 +2,10 @@
 
 Control Room is a shortcut panel for Android settings plus this app's appearance. By Rednave.
 
+## Easiest install and updates
+
+Get App Hub once from https://github.com/thoroftroy/App-Hub/releases, then use it to install and update this app and the rest of the suite. You will not need to download APKs by hand.
+
 ## Install
 
 Requires Android 10 or newer (best on Android 13+).
