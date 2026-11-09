@@ -36,6 +36,7 @@ fun SettingsScreen() {
         "Keyboard and input methods" to Settings.ACTION_INPUT_METHOD_SETTINGS,
         "Location" to Settings.ACTION_LOCATION_SOURCE_SETTINGS,
         "Installed applications" to Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS,
+        "About phone" to Settings.ACTION_DEVICE_INFO_SETTINGS,
         "All Android settings" to Settings.ACTION_SETTINGS
     ) }
     Text("These controls open official Android settings. Wonderdesk does not replace the lock screen, notification shade or protected system controls.", style = MaterialTheme.typography.bodySmall)
