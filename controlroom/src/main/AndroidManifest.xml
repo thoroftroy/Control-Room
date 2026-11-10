@@ -1,3 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application android:label="Control Room"><activity android:name=".MainActivity" android:exported="true" android:resizeableActivity="true"><intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter></activity></application>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <application android:label="Control Room">
+        <activity android:name=".MainActivity" android:exported="true" android:resizeableActivity="true">
+            <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+        </activity>
+        <!-- Read-only suite appearance for the other Wonderdesk apps. No personal data. -->
+        <provider android:name=".AppearanceProvider" android:authorities="dev.wonderdesk.controlroom.appearance" android:exported="true" />
+    </application>
 </manifest>

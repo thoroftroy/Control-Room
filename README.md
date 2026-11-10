@@ -1,20 +1,23 @@
-# Control Room for Android
+# Control Room
 
-A shortcut panel for Android settings.
+Your phone's controls and the look of every Wonderdesk app, in one place.
 
-## Easiest install and updates
+## What it does
 
-Get App Hub once from https://github.com/thoroftroy/App-Hub/releases, then use it to install and update this app and the rest of the suite. You will not need to download APKs by hand.
-## Install
+- **Controls**: flashlight, Do Not Disturb, auto-rotate, ring/vibrate/silent, volume sliders for every sound, brightness, and screen timeout. Wi-Fi, Bluetooth and Internet panels are one tap away. Android asks once before Control Room may change system settings.
+- **Settings**: a searchable list of every Android settings page.
+- **Wonderdesk**: pick one look (Aqua, Bliss, Dark Bliss or Super) and motion level for all Wonderdesk apps at once, open Wonderdesk Apphub, choose your home screen app, and launch any installed Wonderdesk app.
 
-Install the APK, then open the app. Your phone may ask you to allow unknown sources first. Needs Android 10 or newer.
-## Using Control Room
+## Install and update
 
-- Search the list, tap a shortcut, and the matching Android settings screen opens: display, sound, Wi-Fi, battery saver, date and time, apps, about phone and more.
-- Change this app’s own look under Appearance.
+The easiest way is Wonderdesk Apphub: get it once from https://github.com/thoroftroy/App-Hub/releases, then install and update this app and the rest of the suite from there.
 
-It opens system settings. It does not replace them, the lock screen or the notification shade.
+Or download the APK from this repository's Releases, open it, and allow installing from that source if your phone asks. Needs Android 10 or newer.
 
 ## Look and feel
 
-Open About in the app to change the theme or motion. Aqua is the default.
+Every Wonderdesk app follows the look you pick in Control Room (Aqua, Bliss, Dark Bliss or Super). You can give this app its own look in its Settings.
+
+## Privacy
+
+Everything stays on your phone. No accounts, ads or tracking.

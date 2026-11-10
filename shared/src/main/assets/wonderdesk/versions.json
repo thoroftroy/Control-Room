@@ -1,5 +1,5 @@
 {
-  "ecosystem": "0.2.22",
+  "ecosystem": "0.3.0",
   "apps": {
     "wayfinder": "0.2.4",
     "packrat": "0.2.5",
@@ -16,7 +16,7 @@
     "safekeeper": "0.2.3",
     "beacon": "0.2.3",
     "vault": "0.3.2",
-    "control-room": "0.2.14",
+    "control-room": "0.3.0",
     "connections": "0.2.0",
     "devices": "0.2.0",
     "diskworm": "0.2.0",
