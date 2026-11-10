@@ -1,6 +1,6 @@
 # Control Room for Android
 
-A shortcut panel for Android settings. By Rednave.
+A shortcut panel for Android settings.
 
 ## Easiest install and updates
 
