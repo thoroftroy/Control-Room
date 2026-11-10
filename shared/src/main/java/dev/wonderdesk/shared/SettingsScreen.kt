@@ -22,6 +22,7 @@ fun SettingsScreen() {
     var query by rememberSaveable { mutableStateOf("") }
     var appearanceOpen by rememberSaveable { mutableStateOf(false) }
     val links = remember { listOf(
+        "App Hub (install and update suite apps)" to "hub",
         "Default home launcher" to Settings.ACTION_HOME_SETTINGS,
         "Display and wallpaper" to Settings.ACTION_DISPLAY_SETTINGS,
         "Sound and volume" to Settings.ACTION_SOUND_SETTINGS,
@@ -60,7 +61,11 @@ fun SettingsScreen() {
     if (query.isNotBlank() && filtered.isEmpty()) Text("No matching settings", style = MaterialTheme.typography.bodySmall)
     LazyColumn(Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         items(filtered) { (label, action) ->
-            AquaSecondaryButton(onClick = { context.launchSafely(Intent(action).putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName), op::notice) }, Modifier.fillMaxWidth().heightIn(min = 52.dp)) { Text(label) }
+            AquaSecondaryButton(onClick = {
+                if (action == "hub") {
+                    context.launchSafely(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER).setClassName("dev.wonderdesk.apphub", "dev.wonderdesk.apphub.MainActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), op::notice)
+                } else context.launchSafely(Intent(action).putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName), op::notice)
+            }, Modifier.fillMaxWidth().heightIn(min = 52.dp)) { Text(label) }
         }
     }
 }
