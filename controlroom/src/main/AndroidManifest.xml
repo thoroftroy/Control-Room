@@ -1,11 +1,90 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <queries>
+        <package android:name="app.lawnchair" />
+        <package android:name="bitpit.launcher" />
+        <package android:name="ch.deletescape.lawnchair.plah" />
+        <package android:name="com.adobe.reader" />
+        <package android:name="com.alphainventor.filemanager" />
+        <package android:name="com.android.calculator2" />
+        <package android:name="com.android.calendar" />
+        <package android:name="com.android.deskclock" />
+        <package android:name="com.android.filemanager" />
+        <package android:name="com.android.gallery3d" />
+        <package android:name="com.android.music" />
+        <package android:name="com.blissplayer.music.debug" />
+        <package android:name="com.coloros.alarmclock" />
+        <package android:name="com.coloros.filemanager" />
+        <package android:name="com.coloros.gallery3d" />
+        <package android:name="com.cxinventor.file.explorer" />
+        <package android:name="com.estrongs.android.pop" />
+        <package android:name="com.google.android.GoogleCamera.Gallery" />
+        <package android:name="com.google.android.apps.authenticator2" />
+        <package android:name="com.google.android.apps.nbu.files" />
+        <package android:name="com.google.android.apps.pdfviewer" />
+        <package android:name="com.google.android.apps.photos" />
+        <package android:name="com.google.android.apps.youtube.music" />
+        <package android:name="com.google.android.calculator" />
+        <package android:name="com.google.android.calendar" />
+        <package android:name="com.google.android.deskclock" />
+        <package android:name="com.google.android.keep" />
+        <package android:name="com.google.android.videos" />
+        <package android:name="com.lonelycatgames.Xplore" />
+        <package android:name="com.mi.android.globalFileexplorer" />
+        <package android:name="com.microsoft.launcher" />
+        <package android:name="com.miui.calculator" />
+        <package android:name="com.miui.gallery" />
+        <package android:name="com.miui.notes" />
+        <package android:name="com.miui.player" />
+        <package android:name="com.miui.videoplayer" />
+        <package android:name="com.mxtech.videoplayer.ad" />
+        <package android:name="com.mxtech.videoplayer.pro" />
+        <package android:name="com.oneplus.calculator" />
+        <package android:name="com.oneplus.calendar" />
+        <package android:name="com.oneplus.deskclock" />
+        <package android:name="com.oneplus.filemanager" />
+        <package android:name="com.oneplus.gallery" />
+        <package android:name="com.oneplus.music" />
+        <package android:name="com.oneplus.note" />
+        <package android:name="com.rarlab.rar" />
+        <package android:name="com.samsung.android.app.notes" />
+        <package android:name="com.samsung.android.calendar" />
+        <package android:name="com.samsung.android.video" />
+        <package android:name="com.sec.android.app.clockpackage" />
+        <package android:name="com.sec.android.app.music" />
+        <package android:name="com.sec.android.app.myfiles" />
+        <package android:name="com.sec.android.app.popupcalculator" />
+        <package android:name="com.sec.android.gallery3d" />
+        <package android:name="com.simplemobiletools.gallery.pro" />
+        <package android:name="com.simplemobiletools.notes.pro" />
+        <package android:name="com.teslacoilsw.launcher" />
+        <package android:name="com.winzip.android" />
+        <package android:name="com.xiaomi.calendar" />
+        <package android:name="com.xodo.pdf.reader" />
+        <package android:name="dev.wonderdesk.abacus" />
+        <package android:name="dev.wonderdesk.chronicle" />
+        <package android:name="dev.wonderdesk.cinema" />
+        <package android:name="dev.wonderdesk.launcher" />
+        <package android:name="dev.wonderdesk.memories" />
+        <package android:name="dev.wonderdesk.packrat" />
+        <package android:name="dev.wonderdesk.pages" />
+        <package android:name="dev.wonderdesk.scribble" />
+        <package android:name="dev.wonderdesk.timepiece" />
+        <package android:name="dev.wonderdesk.vault" />
+        <package android:name="dev.wonderdesk.wayfinder" />
+        <package android:name="md.obsidian" />
+        <package android:name="org.videolan.vlc" />
+        <package android:name="ru.zdevs.zarchiver" />
+    </queries>
+
     <application android:label="Control Room">
         <activity android:name=".MainActivity" android:exported="true" android:resizeableActivity="true">
             <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
         </activity>
         <!-- Read-only suite appearance for the other Wonderdesk apps. No personal data. -->
+        <receiver android:name=".ArchiveResult" android:exported="false" />
         <provider android:name=".AppearanceProvider" android:authorities="dev.wonderdesk.controlroom.appearance" android:exported="true" />
     </application>
 </manifest>

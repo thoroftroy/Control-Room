@@ -358,7 +358,12 @@ private fun SuiteTab() {
             ListRow("Home screen app", subtitle = "Choose Wonderdesk Launcher or another home app", icon = WonderIcons.Home, tint = Color(0xFF2E9E44), chevron = true, onClick = {
                 context.launchSafely(Intent(Settings.ACTION_HOME_SETTINGS), toast)
             })
+            PanelDivider()
+            ListRow("Default apps", subtitle = "Pick Wonderdesk apps for browser links, files, photos and more", icon = WonderIcons.Apps, tint = Color(0xFF1E7FE8), chevron = true, onClick = {
+                context.launchSafely(Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS), toast)
+            })
         }
+        RetirePanel()
         Panel(title = "Installed Wonderdesk apps (${installed.size})") {
             LazyVerticalGrid(GridCells.Fixed(4), Modifier.fillMaxWidth().heightIn(max = 520.dp).padding(8.dp), userScrollEnabled = false) {
                 items(installed) { (name, pkg) ->
