@@ -293,9 +293,9 @@ private fun SettingsTab() {
         SearchField(q, { q = it }, "Search settings", Modifier.padding(16.dp, 12.dp, 16.dp, 4.dp))
         androidx.compose.foundation.lazy.LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp)) {
             shown.groupBy { it.section }.forEach { (section, list) ->
-                item(key = section) { SectionLabel(section, Modifier.padding(start = 6.dp, top = 8.dp, bottom = 6.dp)) }
+                item(key = "section:$section") { SectionLabel(section, Modifier.padding(start = 6.dp, top = 8.dp, bottom = 6.dp)) }
                 list.forEachIndexed { i, s ->
-                    item(key = s.title) { ListRow(s.title, Modifier.panelItem(i, list.size), icon = s.icon, tint = s.tint, chevron = true, onClick = { context.openSetting(s, toast) }) }
+                    item(key = "setting:$section:${s.title}:$i") { ListRow(s.title, Modifier.panelItem(i, list.size), icon = s.icon, tint = s.tint, chevron = true, onClick = { context.openSetting(s, toast) }) }
                 }
             }
             if (shown.isEmpty()) item { EmptyState("No settings match", "Try another word, or open all Android settings.", icon = WonderIcons.Search,

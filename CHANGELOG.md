@@ -1,5 +1,13 @@
 # Control Room changelog
 
+## v0.5.0
+
+- Fixed the Settings tab crashing when you scrolled down to Apps
+- Crash reports can be sent to the Wonderdesk developer: turn on automatic sending, or send the waiting ones with one tap. “What gets sent” shows each report exactly as it would go out
+- Works properly in landscape: tabs move to a rail at the side so the content keeps its height, and screens that ran out of room now scroll
+- If the app ever crashes it says so next time it opens and offers to send a report (only the error, app version and phone model, with file names and links removed). Turn on automatic sending in Control Room › Wonderdesk
+- Lists can no longer crash when two items share a name
+
 ## v0.4.0
 
 - New Crash reports panel in the Wonderdesk tab: crashes and freezes from any Wonderdesk app are collected with their logs, ready to share, copy or clear
