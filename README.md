@@ -7,6 +7,7 @@ Your phone's controls and the look of every Wonderdesk app, in one place.
 - **Controls**: flashlight, Do Not Disturb, auto-rotate, ring/vibrate/silent, volume sliders for every sound, brightness, and screen timeout. Wi-Fi, Bluetooth and Internet panels are one tap away. Android asks once before Control Room may change system settings.
 - **Settings**: a searchable list of every Android settings page.
 - **Wonderdesk**: pick one look (Aqua, Bliss, Dark Bliss or Super) and motion level for all Wonderdesk apps at once, open Wonderdesk Apphub, choose your home screen app, and launch any installed Wonderdesk app.
+- **Crash reports:** crashes and freezes from any Wonderdesk app are collected with their logs, ready to share, copy or clear.
 - **Apps Wonderdesk replaces:** see the apps your Wonderdesk apps take over (Files, Photos, Calendar, Clock, Keep, Calculator, VLC and more) and archive, uninstall or disable the ones you pick.
 
 ## Install and update

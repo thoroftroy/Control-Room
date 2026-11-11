@@ -85,6 +85,8 @@
         </activity>
         <!-- Read-only suite appearance for the other Wonderdesk apps. No personal data. -->
         <receiver android:name=".ArchiveResult" android:exported="false" />
+        <!-- Crash reports from the other Wonderdesk apps (checked by caller package). -->
+        <provider android:name=".CrashProvider" android:authorities="dev.wonderdesk.controlroom.crashes" android:exported="true" />
         <provider android:name=".AppearanceProvider" android:authorities="dev.wonderdesk.controlroom.appearance" android:exported="true" />
     </application>
 </manifest>

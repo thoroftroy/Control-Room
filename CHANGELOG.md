@@ -1,5 +1,11 @@
 # Control Room changelog
 
+## v0.4.0
+
+- New Crash reports panel in the Wonderdesk tab: crashes and freezes from any Wonderdesk app are collected with their logs, ready to share, copy or clear
+- If the app ever crashes or freezes, a report goes to Control Room so it can be shared and fixed
+- App icon art is larger and fills its tile without being cut off
+
 ## v0.3.1
 
 - New: Apps Wonderdesk replaces. Finds the stock and third-party apps each installed Wonderdesk app takes over (Files, Photos, Calendar, Clock, Keep, Calculator, VLC and more) and archives, uninstalls or disables the ones you choose, one prompt at a time

@@ -364,6 +364,7 @@ private fun SuiteTab() {
             })
         }
         RetirePanel()
+        CrashPanel()
         Panel(title = "Installed Wonderdesk apps (${installed.size})") {
             LazyVerticalGrid(GridCells.Fixed(4), Modifier.fillMaxWidth().heightIn(max = 520.dp).padding(8.dp), userScrollEnabled = false) {
                 items(installed) { (name, pkg) ->
@@ -381,6 +382,6 @@ private fun SuiteTab() {
 @Composable
 private fun AppIcon(pkg: String, size: androidx.compose.ui.unit.Dp = 32.dp) {
     val context = LocalContext.current
-    val bmp = remember(pkg) { runCatching { context.packageManager.getApplicationIcon(pkg).toBitmap(144, 144).asImageBitmap() }.getOrNull() }
+    val bmp = remember(pkg) { context.suiteArt(pkg, 144) }
     if (bmp != null) Image(bmp, null, Modifier.size(size)) else Box(Modifier.size(size))
 }
