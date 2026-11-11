@@ -114,7 +114,7 @@ fun RetirePanel() {
         if (list.isEmpty()) ListRow("Nothing to tidy up", subtitle = "None of the apps that Wonderdesk replaces are installed", icon = WonderIcons.CheckCircle, tint = p.success)
         list.forEachIndexed { i, r ->
             if (i > 0) PanelDivider()
-            val icon = remember(r.pkg) { runCatching { context.packageManager.getApplicationIcon(r.pkg).toBitmap(96, 96).asImageBitmap() }.getOrNull() }
+            val icon = rememberAppIcon(r.pkg, 96)
             ListRow(r.label, subtitle = if (!r.enabled) "Turned off" else "Replaced by ${r.replacedBy}" + if (r.system) " · built in" else "",
                 leading = { icon?.let { Image(it, null, Modifier.size(32.dp)) } },
                 trailing = {

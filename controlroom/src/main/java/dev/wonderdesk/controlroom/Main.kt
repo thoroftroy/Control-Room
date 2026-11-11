@@ -382,6 +382,6 @@ private fun SuiteTab() {
 @Composable
 private fun AppIcon(pkg: String, size: androidx.compose.ui.unit.Dp = 32.dp) {
     val context = LocalContext.current
-    val bmp = remember(pkg) { context.suiteArt(pkg, 144) }
+    val bmp = rememberSuiteArt(pkg, 144)
     if (bmp != null) Image(bmp, null, Modifier.size(size)) else Box(Modifier.size(size))
 }
