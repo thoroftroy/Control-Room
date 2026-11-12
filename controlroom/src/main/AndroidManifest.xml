@@ -80,7 +80,7 @@
         <package android:name="ru.zdevs.zarchiver" />
     </queries>
 
-    <application android:label="Control Room">
+    <application android:enableOnBackInvokedCallback="true" android:label="Control Room">
         <activity android:name=".MainActivity" android:exported="true" android:resizeableActivity="true">
             <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
         </activity>
