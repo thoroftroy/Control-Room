@@ -89,5 +89,7 @@
         <!-- Crash reports from the other Wonderdesk apps (checked by caller package). -->
         <provider android:name=".CrashProvider" android:authorities="dev.wonderdesk.controlroom.crashes" android:exported="true" />
         <provider android:name=".AppearanceProvider" android:authorities="dev.wonderdesk.controlroom.appearance" android:exported="true" />
+        <receiver android:name=".ControlsWidget" android:exported="true" android:label="Quick controls"><intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter><meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_controlswidget_info" /></receiver>
+        <activity android:name=".ControlsWidgetSetup" android:exported="true" android:label="Widget settings"><intent-filter><action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" /></intent-filter></activity>
     </application>
 </manifest>

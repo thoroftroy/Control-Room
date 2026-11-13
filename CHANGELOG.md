@@ -1,5 +1,11 @@
 # Control Room changelog
 
+## v0.5.3
+
+- Tap the tab you're already on to glide back to the top of its list
+- New Quick controls widget: pick up to four of flashlight, Do Not Disturb, auto-rotate, brightness, screen timeout, ring mode and Wi-Fi; it shrinks to one or two buttons when small
+- Nothing required stays hidden: if Android is blocking something the app needs, a slim banner says what and takes you straight to the switch, and Settings › Permissions and access lists everything with its state
+
 ## v0.5.2
 
 - Smoother everywhere: new screens, tabs and Settings ease in instead of snapping, and buttons, tabs, chips and switches give a light tap you can feel (following your phone's touch-feedback setting)

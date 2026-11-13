@@ -49,6 +49,12 @@ class MainActivity : WonderActivity() {
     @Composable override fun Content() = ControlRoomApp()
 }
 
+/** What Android must allow for this app to work fully; shown as a banner when off and in Settings. */
+private val APP_NEEDS by lazy { listOf(
+    WonderNeed("Modify system settings", "Lets the brightness, screen timeout and rotation controls change them", access = SpecialAccess.Kind.WRITE_SETTINGS),
+    WonderNeed("Do Not Disturb access", "Lets the Do Not Disturb control switch it on and off", required = false, access = SpecialAccess.Kind.DND),
+) }
+
 private const val ABOUT = "Control Room puts your phone's everyday controls in one place: volume, brightness, flashlight, screen timeout, rotation and Do Not Disturb, " +
     "plus a searchable list of every Android settings page. It also sets the look of every Wonderdesk app at once."
 
@@ -82,7 +88,7 @@ class AppearanceProvider : ContentProvider() {
 @Composable
 fun ControlRoomApp() {
     var tab by rememberSaveable { mutableStateOf("controls") }
-    WonderApp(
+    WonderApp(needs = APP_NEEDS, 
         appName = "Control Room", about = ABOUT,
         tabs = listOf(WonderTab("controls", "Controls", WonderIcons.Tune), WonderTab("settings", "Settings", WonderIcons.Settings), WonderTab("suite", "Wonderdesk", WonderIcons.Dashboard)),
         selectedTab = tab, onTab = { tab = it },
@@ -138,7 +144,7 @@ private fun ControlsTab() {
         }
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Tile(if (torch) "Light on" else "Flashlight", WonderIcons.Lightbulb, Color(0xFFF2A516), torch, Modifier.weight(1f), enabled = torchId != null) {
-                torchId?.let { runCatching { camera.setTorchMode(it, !torch) }.onFailure { toast("The camera is busy") } }
+                torchId?.let { runCatching { camera.setTorchMode(it, !torch); context.getSharedPreferences("controls-widget", 0).edit().putBoolean("torch", !torch).apply(); refreshWidgets(context, ControlsWidget::class.java) }.onFailure { toast("The camera is busy") } }
             }
             Tile(if (dnd > NotificationManager.INTERRUPTION_FILTER_ALL) "Do Not Disturb on" else "Do Not Disturb", WonderIcons.DoNotDisturbOn, Color(0xFF6C5CE7),
                 dnd > NotificationManager.INTERRUPTION_FILTER_ALL, Modifier.weight(1f)) {
@@ -291,7 +297,7 @@ private fun SettingsTab() {
     val shown = SETTINGS.filter { q.isBlank() || it.title.contains(q, true) || it.keywords.contains(q.lowercase()) }
     Column(Modifier.fillMaxSize()) {
         SearchField(q, { q = it }, "Search settings", Modifier.padding(16.dp, 12.dp, 16.dp, 4.dp))
-        androidx.compose.foundation.lazy.LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp)) {
+        androidx.compose.foundation.lazy.LazyColumn(Modifier.fillMaxSize(), state = rememberTabTopList(), contentPadding = PaddingValues(16.dp)) {
             shown.groupBy { it.section }.forEach { (section, list) ->
                 item(key = "section:$section") { SectionLabel(section, Modifier.padding(start = 6.dp, top = 8.dp, bottom = 6.dp)) }
                 list.forEachIndexed { i, s ->
