@@ -52,7 +52,7 @@ class ControlsWidget : AppWidgetProvider() {
             val look = runCatching { WidgetLook.valueOf(s.str("look", "GLASS")) }.getOrDefault(WidgetLook.GLASS)
             val chosen = s.str("controls", DEFAULT.joinToString(",")).split(',').filter { k -> CONTROLS.any { it.first == k } }.ifEmpty { DEFAULT }.take(4)
             fun make(layout: Int, count: Int) = RemoteViews(c.packageName, layout).apply {
-                setInt(R.id.w_root, "setBackgroundResource", when (look) { WidgetLook.GLASS -> R.drawable.wd_widget_bg; WidgetLook.DARK -> R.drawable.wd_widget_bg_dark; WidgetLook.CLEAR -> R.drawable.wd_widget_bg_clear })
+                setInt(R.id.w_root, "setBackgroundResource", widgetBackground(look, Triple(R.drawable.wd_widget_bg, R.drawable.wd_widget_bg_dark, R.drawable.wd_widget_bg_clear)))
                 TILES.take(count).forEachIndexed { i, (tile, icon, label) ->
                     val key = chosen.getOrNull(i)
                     if (key == null) { setViewVisibility(tile, android.view.View.GONE); return@forEachIndexed }
