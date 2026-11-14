@@ -1,5 +1,9 @@
 # Control Room changelog
 
+## v0.5.9
+
+- Stay awake: keep the screen on for an hour or until you switch it off, then your own screen timeout comes back. In Control Room and as a Quick Settings tile (Off → 1 hour → Until off)
+
 ## v0.5.8
 
 - The Quick controls widget wakes the phone far less often

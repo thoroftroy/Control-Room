@@ -200,6 +200,12 @@ private fun ControlsTab() {
                         })
                     }
                 }
+                var awake by remember(tick) { mutableIntStateOf(StayAwake.mode(context)) }
+                Text("Stay awake", style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 6.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    listOf(0, 1, 2).forEach { m -> Chip(StayAwake.label(m), awake == m, { if (!canWrite) needWrite() else if (StayAwake.set(context, m)) { awake = m; cur.intValue = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_OFF_TIMEOUT, 60_000) } }) }
+                }
+                Text("Keeps the screen on, then puts your own timeout back. Also a Quick Settings tile: edit your tiles and add “Stay awake”.", style = MaterialTheme.typography.bodySmall, color = p.secondaryText)
             }
             PanelDivider(0.dp)
             ListRow("Dark theme, font size and more", icon = WonderIcons.DarkMode, tint = Color(0xFF34495E), chevron = true, onClick = { context.launchSafely(Intent(Settings.ACTION_DISPLAY_SETTINGS)) {} })
