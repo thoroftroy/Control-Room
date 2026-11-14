@@ -67,6 +67,11 @@ object SuiteLook {
     fun set(c: Context, look: WonderLook? = null, motion: WonderMotion? = null) {
         prefs(c).edit().apply { look?.let { putString("look", it.name) }; motion?.let { putString("motion", it.name) } }.apply()
         c.contentResolver.notifyChange(GlobalAppearance.URI, null)
+        // Each app redraws its widgets (and the launcher its icons) straight away instead of waiting for a restart.
+        runCatching {
+            c.packageManager.getInstalledPackages(0).map { it.packageName }.filter { it.startsWith("dev.wonderdesk.") || it.startsWith("com.blissplayer") }
+                .forEach { pkg -> c.sendBroadcast(android.content.Intent(WONDER_APPEARANCE_CHANGED).setPackage(pkg)) }
+        }
     }
 }
 

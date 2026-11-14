@@ -1,5 +1,10 @@
 # Control Room changelog
 
+## v0.5.7
+
+- Changing the look tells every Wonderdesk app at once (and Bliss Player), so widgets, icons and the player all match without a restart
+- Changing the look in Control Room now restyles this app's widgets straight away, with no refresh or restart
+
 ## v0.5.6
 
 - Widgets: choose the title colour in each widget's settings (automatic, white, dark, Aqua blue, Super pink or gold), on top of the background looks
