@@ -1,5 +1,10 @@
 # Control Room changelog
 
+## v0.5.8
+
+- The Quick controls widget wakes the phone far less often
+- Lighter on the battery: in the Super look the drifting sparkles settle after a few seconds without a touch (the next tap wakes them), so a screen you're reading no longer redraws 25 times a second
+
 ## v0.5.7
 
 - Changing the look tells every Wonderdesk app at once (and Bliss Player), so widgets, icons and the player all match without a restart
