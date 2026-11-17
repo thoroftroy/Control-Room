@@ -1,5 +1,10 @@
 # Control Room changelog
 
+## v0.5.11
+
+- New suite-wide Text size and Accent colour in the Wonderdesk tab: every Wonderdesk app follows them
+- New Rotate with the phone switch in Settings
+
 ## v0.5.10
 
 - Loading screens now say what they are doing instead of showing a bare spinner

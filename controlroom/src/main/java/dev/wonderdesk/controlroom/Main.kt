@@ -64,8 +64,10 @@ object SuiteLook {
     fun prefs(c: Context) = c.getSharedPreferences("suite-appearance", Context.MODE_PRIVATE)
     fun look(c: Context) = runCatching { WonderLook.valueOf(prefs(c).getString("look", "AQUA")!!) }.getOrDefault(WonderLook.AQUA)
     fun motion(c: Context) = runCatching { WonderMotion.valueOf(prefs(c).getString("motion", "FULL")!!) }.getOrDefault(WonderMotion.FULL)
-    fun set(c: Context, look: WonderLook? = null, motion: WonderMotion? = null) {
-        prefs(c).edit().apply { look?.let { putString("look", it.name) }; motion?.let { putString("motion", it.name) } }.apply()
+    fun fontPct(c: Context) = prefs(c).getInt("fontPct", 100)
+    fun accent(c: Context) = prefs(c).getInt("accent", 0)
+    fun set(c: Context, look: WonderLook? = null, motion: WonderMotion? = null, fontPct: Int? = null, accent: Int? = null) {
+        prefs(c).edit().apply { fontPct?.let { putInt("fontPct", it) }; accent?.let { putInt("accent", it) }; look?.let { putString("look", it.name) }; motion?.let { putString("motion", it.name) } }.apply()
         c.contentResolver.notifyChange(GlobalAppearance.URI, null)
         // Each app redraws its widgets (and the launcher its icons) straight away instead of waiting for a restart.
         runCatching {
@@ -80,7 +82,7 @@ class AppearanceProvider : ContentProvider() {
     override fun onCreate() = true
     override fun query(uri: Uri, projection: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, sortOrder: String?): Cursor {
         val c = context!!
-        return MatrixCursor(arrayOf("look", "motion")).apply { addRow(arrayOf(SuiteLook.look(c).name, SuiteLook.motion(c).name)) }
+        return MatrixCursor(arrayOf("look", "motion", "fontPct", "accent")).apply { addRow(arrayOf(SuiteLook.look(c).name, SuiteLook.motion(c).name, SuiteLook.fontPct(c), SuiteLook.accent(c))) }
     }
     override fun getType(uri: Uri) = "vnd.android.cursor.item/vnd.wonderdesk.appearance"
     override fun insert(uri: Uri, values: ContentValues?): Uri? = null
@@ -364,6 +366,20 @@ private fun SuiteTab() {
             Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Text("Motion", style = MaterialTheme.typography.titleSmall)
                 Segmented(WonderMotion.entries.map { it.label }, WonderMotion.entries.indexOf(motion)) { motion = WonderMotion.entries[it]; SuiteLook.set(context, motion = motion) }
+                var fp by remember { mutableIntStateOf(SuiteLook.fontPct(context)) }
+                Text("Text size in every app: $fp%", Modifier.padding(top = 8.dp), style = MaterialTheme.typography.titleSmall)
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    listOf(80, 90, 100, 115, 130, 150).forEach { v -> Chip("$v%", fp == v, { fp = v; SuiteLook.set(context, fontPct = v); toast("Text size set for all apps") }) }
+                }
+                var ac by remember { mutableIntStateOf(SuiteLook.accent(context)) }
+                Text("Accent colour", Modifier.padding(top = 8.dp), style = MaterialTheme.typography.titleSmall)
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Chip("Each look's own", ac == 0, { ac = 0; SuiteLook.set(context, accent = 0); toast("Accent reset for all apps") })
+                    listOf(0xFF1E7FE8, 0xFF2E9E44, 0xFFE5483C, 0xFFF2A516, 0xFF8E44AD, 0xFFE0559C, 0xFF16A085, 0xFF5B6EE1, 0xFF7A7F87).forEach { c ->
+                        Box(Modifier.size(32.dp).clip(androidx.compose.foundation.shape.CircleShape).background(Color(c)).border(if (ac == c.toInt()) 3.dp else 1.dp, if (ac == c.toInt()) p.text else p.panelBorder, androidx.compose.foundation.shape.CircleShape)
+                            .clickable { ac = c.toInt(); SuiteLook.set(context, accent = c.toInt()); toast("Accent set for all apps") })
+                    }
+                }
             }
         }
         Panel {
