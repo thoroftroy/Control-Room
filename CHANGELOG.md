@@ -1,5 +1,9 @@
 # Control Room changelog
 
+## v0.5.12
+
+- New phone controls: text size for the whole phone, touch sounds, vibrate on touch and dial pad tones
+
 ## v0.5.11
 
 - New suite-wide Text size and Accent colour in the Wonderdesk tab: every Wonderdesk app follows them
