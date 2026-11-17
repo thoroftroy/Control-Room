@@ -1,5 +1,10 @@
 # Control Room changelog
 
+## v0.5.10
+
+- Loading screens now say what they are doing instead of showing a bare spinner
+- Wording tidied so no sentence needs a dash
+
 ## v0.5.9
 
 - Stay awake: keep the screen on for an hour or until you switch it off, then your own screen timeout comes back. In Control Room and as a Quick Settings tile (Off → 1 hour → Until off)
