@@ -210,6 +210,26 @@ private fun ControlsTab() {
                 Text("Keeps the screen on, then puts your own timeout back. Also a Quick Settings tile: edit your tiles and add “Stay awake”.", style = MaterialTheme.typography.bodySmall, color = p.secondaryText)
             }
             PanelDivider(0.dp)
+            Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                var fscale by remember(tick) { mutableFloatStateOf(Settings.System.getFloat(context.contentResolver, Settings.System.FONT_SCALE, 1f)) }
+                Text("Text size for the whole phone", style = MaterialTheme.typography.titleSmall)
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    listOf(.85f, 1f, 1.15f, 1.3f, 1.5f, 2f).forEach { v -> Chip("${(v * 100).toInt()}%", kotlin.math.abs(fscale - v) < .02f, { if (!canWrite) needWrite() else { Settings.System.putFloat(context.contentResolver, Settings.System.FONT_SCALE, v); fscale = v } }) }
+                }
+            }
+            PanelDivider(0.dp)
+            Column(Modifier.padding(horizontal = 4.dp)) {
+                fun sys(k: String, d: Int) = Settings.System.getInt(context.contentResolver, k, d) == 1
+                var touch by remember(tick) { mutableStateOf(sys(Settings.System.SOUND_EFFECTS_ENABLED, 1)) }
+                SwitchRow("Touch sounds", touch, { on -> if (!canWrite) needWrite() else { Settings.System.putInt(context.contentResolver, Settings.System.SOUND_EFFECTS_ENABLED, if (on) 1 else 0); touch = on } }, icon = WonderIcons.VolumeUp, tint = Color(0xFF1E7FE8))
+                PanelDivider()
+                var haptic by remember(tick) { mutableStateOf(sys(Settings.System.HAPTIC_FEEDBACK_ENABLED, 1)) }
+                SwitchRow("Vibrate on touch", haptic, { on -> if (!canWrite) needWrite() else { Settings.System.putInt(context.contentResolver, Settings.System.HAPTIC_FEEDBACK_ENABLED, if (on) 1 else 0); haptic = on } }, icon = WonderIcons.TouchApp, tint = Color(0xFF8E44AD))
+                PanelDivider()
+                var dial by remember(tick) { mutableStateOf(sys(Settings.System.DTMF_TONE_WHEN_DIALING, 1)) }
+                SwitchRow("Dial pad tones", dial, { on -> if (!canWrite) needWrite() else { Settings.System.putInt(context.contentResolver, Settings.System.DTMF_TONE_WHEN_DIALING, if (on) 1 else 0); dial = on } }, icon = WonderIcons.Phone, tint = Color(0xFF2E9E44))
+            }
+            PanelDivider(0.dp)
             ListRow("Dark theme, font size and more", icon = WonderIcons.DarkMode, tint = Color(0xFF34495E), chevron = true, onClick = { context.launchSafely(Intent(Settings.ACTION_DISPLAY_SETTINGS)) {} })
         }
         if (!canWrite || !dndAccess) Panel(title = "Permissions", footer = "Android asks you once before an app may change these. Control Room never changes anything on its own.") {
