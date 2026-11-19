@@ -1,5 +1,9 @@
 # Control Room changelog
 
+## v0.5.13
+
+- Crash and freeze reports now share one sending path with Pulse feedback, and each carries a short report ID. Full details stay in the developer's private inbox only
+
 ## v0.5.12
 
 - New phone controls: text size for the whole phone, touch sounds, vibrate on touch and dial pad tones

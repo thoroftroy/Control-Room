@@ -105,18 +105,12 @@ object CrashLog {
  * web and content links and email addresses are removed first. Nothing is sent unless you choose to.
  */
 object CrashUpload {
-    private const val TOPIC = "https://ntfy.sh/wonderdesk-crash-062c8350c3af4072"
     private fun prefs(c: Context) = c.getSharedPreferences("crash-upload", Context.MODE_PRIVATE)
     fun auto(c: Context) = prefs(c).getBoolean("auto", false)
     fun setAuto(c: Context, on: Boolean) = prefs(c).edit().putBoolean("auto", on).apply()
     @Volatile private var busy = false
 
-    /** What a report looks like once private details are taken out. */
-    fun redact(s: String): String = s
-        .replace(Regex("""/(storage|sdcard|mnt|data/user/\d+|data/data)/[^\s:'"),\]]+"""), "/…/[path]")
-        .replace(Regex("""content://[^\s'"),\]]+"""), "content://[link]")
-        .replace(Regex("""https?://[^\s'"),\]]+"""), "[web link]")
-        .replace(Regex("""[\w.+-]+@[\w-]+\.[\w.]+"""), "[email]")
+    fun redact(s: String): String = dev.wonderdesk.shared.WonderReport.redact(s)
 
     fun preview(o: JSONObject): String = buildString {
         append("${o.optString("pkg")} ${o.optString("version")} · ${o.optString("kind")}\n")
@@ -137,15 +131,8 @@ object CrashUpload {
                 for (o in todo) {
                     val body = preview(o).let { if (it.toByteArray().size > 3800) it.take(3700) + "\n…" else it }
                     val title = "${o.optString("pkg").removePrefix("dev.wonderdesk.")} ${o.optString("version")} ${o.optString("kind")}"
-                    val r = runCatching {
-                        (java.net.URL(TOPIC).openConnection() as java.net.HttpURLConnection).run {
-                            requestMethod = "POST"; doOutput = true; connectTimeout = 10_000; readTimeout = 10_000
-                            setRequestProperty("Title", title.take(120)); setRequestProperty("Tags", if (o.optString("kind") == "crash") "boom" else "warning")
-                            setRequestProperty("Content-Type", "text/plain; charset=utf-8")
-                            outputStream.use { it.write(body.toByteArray()) }
-                            val code = responseCode; disconnect(); code in 200..299
-                        }
-                    }.getOrDefault(false)
+                    val id = Integer.toHexString(CrashLog.key(o).hashCode())
+                    val r = dev.wonderdesk.shared.WonderReport.post(title, body + "\n\nReport ID: " + id, if (o.optString("kind") == "crash") "boom" else "warning")
                     if (r) { ok += CrashLog.key(o); sent++ } else break
                 }
                 if (ok.isNotEmpty()) CrashLog.markSent(c, ok)
