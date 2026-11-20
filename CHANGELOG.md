@@ -1,5 +1,9 @@
 # Control Room changelog
 
+## v0.6.0
+
+- New in the Wonderdesk tab: choose which apps (Cinema, Bliss Player, Wayfinder, Ripple) also put their controls on the Wonderdesk Launcher's floating button. Notifications always stay
+
 ## v0.5.13
 
 - Crash and freeze reports now share one sending path with Pulse feedback, and each carries a short report ID. Full details stay in the developer's private inbox only

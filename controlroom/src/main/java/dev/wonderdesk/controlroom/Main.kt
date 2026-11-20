@@ -362,6 +362,7 @@ private fun SuiteTab() {
     var motion by remember { mutableStateOf(SuiteLook.motion(context)) }
     val installed = remember(tick) { SUITE.filter { (_, pkg) -> runCatching { context.packageManager.getPackageInfo(pkg, 0) }.isSuccess } }
     Page {
+        AssistModesPanel()
         Panel(title = "Look for every Wonderdesk app", footer = "Apps follow this unless you give one its own look in that app's Settings. Changes apply when an app is next opened or resumed.") {
             Row(Modifier.fillMaxWidth().padding(12.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 WonderLook.entries.forEach { option ->
