@@ -66,7 +66,6 @@
         <package android:name="com.xodo.pdf.reader" />
         <package android:name="dev.wonderdesk.abacus" />
         <package android:name="dev.wonderdesk.chronicle" />
-        <package android:name="dev.wonderdesk.cinema" />
         <package android:name="dev.wonderdesk.launcher" />
         <package android:name="dev.wonderdesk.memories" />
         <package android:name="dev.wonderdesk.packrat" />

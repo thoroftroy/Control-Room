@@ -347,7 +347,7 @@ private fun SettingsTab() {
 
 private val SUITE = listOf(
     "Abacus" to "dev.wonderdesk.abacus", "Beacon" to "dev.wonderdesk.beacon", "Bliss Player" to "com.blissplayer.music.debug", "Chronicle" to "dev.wonderdesk.chronicle",
-    "Cinema" to "dev.wonderdesk.cinema", "Launcher" to "dev.wonderdesk.launcher", "Memories" to "dev.wonderdesk.memories", "Packrat" to "dev.wonderdesk.packrat",
+    "Launcher" to "dev.wonderdesk.launcher", "Memories" to "dev.wonderdesk.memories", "Packrat" to "dev.wonderdesk.packrat",
     "Pages" to "dev.wonderdesk.pages", "Pulse" to "dev.wonderdesk.pulse", "Safekeeper" to "dev.wonderdesk.safekeeper", "Scribble" to "dev.wonderdesk.scribble",
     "Timepiece" to "dev.wonderdesk.timepiece", "Vault" to "dev.wonderdesk.vault", "Wayfinder" to "dev.wonderdesk.wayfinder", "Wonderdesk Apphub" to "dev.wonderdesk.apphub",
 )

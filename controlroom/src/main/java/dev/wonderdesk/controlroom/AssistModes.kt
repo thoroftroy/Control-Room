@@ -18,7 +18,7 @@ import dev.wonderdesk.shared.*
 object AssistModes {
     /** key, name, what it puts on the button. */
     val APPS = listOf(
-        Triple("cinema", "Cinema", "Record screen, Start clip, Save clip and Stop"),
+        Triple("memories", "Memories", "Record screen, Start clip, Save clip and Stop"),
         Triple("blissplayer", "Bliss Player", "Previous, play or pause, next, love"),
         Triple("wayfinder", "Wayfinder", "Stop sharing, and cancel for copy and move jobs"),
         Triple("ripple", "Ripple", "Disconnect from your computer"),

@@ -1,5 +1,9 @@
 # Control Room changelog
 
+## v0.6.5
+
+- The switch for the screen recorder's controls on the floating button is now called Memories, and Cinema is listed as replaced by Memories
+
 ## v0.6.4
 
 - At night the animated background gets a stronger wash, so text stays easy to read on dark scenes
