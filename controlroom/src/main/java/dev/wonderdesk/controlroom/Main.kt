@@ -249,7 +249,7 @@ private fun VolumeSlider(label: String, stream: Int, icon: ImageVector, audio: A
     var v by remember(tick) { mutableFloatStateOf(audio.getStreamVolume(stream).toFloat()) }
     Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(icon, null, tint = p.secondaryText, modifier = Modifier.size(22.dp))
-        Text(label, Modifier.width(110.dp).padding(start = 10.dp), style = MaterialTheme.typography.bodyMedium)
+        FitLabel(label, LocalContentColor.current, MaterialTheme.typography.bodyMedium, Modifier.width(112.dp).padding(start = 10.dp))
         Slider(v, { n -> v = n; runCatching { audio.setStreamVolume(stream, n.toInt(), 0) }.onFailure { onDenied() } }, Modifier.weight(1f),
             valueRange = min.toFloat()..max.toFloat(), steps = (max - min - 1).coerceAtLeast(0), colors = SliderDefaults.colors(thumbColor = p.accent, activeTrackColor = p.accent))
     }
@@ -266,7 +266,7 @@ private fun Tile(label: String, icon: ImageVector, tint: Color, on: Boolean, mod
         Box(Modifier.size(34.dp).clip(CircleShape).background(if (on) Color.White.copy(alpha = .25f) else tint.copy(alpha = .14f)), contentAlignment = Alignment.Center) {
             Icon(icon, null, tint = if (on) Color.White else tint, modifier = Modifier.size(20.dp))
         }
-        Text(label, color = if (on) Color.White else if (enabled) p.text else p.secondaryText, style = MaterialTheme.typography.labelLarge, maxLines = 2, overflow = TextOverflow.Ellipsis)
+        FitLabel(label, if (on) Color.White else if (enabled) p.text else p.secondaryText, MaterialTheme.typography.labelLarge)
     }
 }
 

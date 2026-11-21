@@ -1,5 +1,10 @@
 # Control Room changelog
 
+## v0.6.7
+
+- The symbols drifting in the background are smaller and fainter so they no longer crowd text; selected segments and chips are readable in every look (including Super); the warning banner at the top has a solid backing so its text is easy to read
+- Slider names (like Notifications) and the quick tiles (like Do Not Disturb) shrink to fit instead of being cut off
+
 ## v0.6.6
 
 - The animated background is now drawn directly on the screen at full sharpness instead of a small picture stretched up, so it is smooth and no longer looks pixelated; the grain over it is much subtler, and long tab names (like Feedback) shrink to fit instead of being cut off
