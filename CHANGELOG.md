@@ -1,5 +1,9 @@
 # Control Room changelog
 
+## v0.6.6
+
+- The animated background is now drawn directly on the screen at full sharpness instead of a small picture stretched up, so it is smooth and no longer looks pixelated; the grain over it is much subtler, and long tab names (like Feedback) shrink to fit instead of being cut off
+
 ## v0.6.5
 
 - The switch for the screen recorder's controls on the floating button is now called Memories, and Cinema is listed as replaced by Memories
