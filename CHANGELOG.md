@@ -1,5 +1,9 @@
 # Control Room changelog
 
+## v0.6.1
+
+- Fixed a gap above the keyboard in screens with a bottom tab bar: the tab bar now steps aside while you type, so you can see what you are writing
+
 ## v0.6.0
 
 - New in the Wonderdesk tab: choose which apps (Cinema, Bliss Player, Wayfinder, Ripple) also put their controls on the Wonderdesk Launcher's floating button. Notifications always stay
