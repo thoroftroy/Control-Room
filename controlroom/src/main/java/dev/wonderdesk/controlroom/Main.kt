@@ -233,7 +233,7 @@ private fun ControlsTab() {
             ListRow("Dark theme, font size and more", icon = WonderIcons.DarkMode, tint = Color(0xFF34495E), chevron = true, onClick = { context.launchSafely(Intent(Settings.ACTION_DISPLAY_SETTINGS)) {} })
         }
         if (!canWrite || !dndAccess) Panel(title = "Permissions", footer = "Android asks you once before an app may change these. Control Room never changes anything on its own.") {
-            if (!canWrite) ListRow("Allow changing system settings", subtitle = "For brightness, timeout and rotation", icon = WonderIcons.Security, tint = p.warning, chevron = true, onClick = { needWrite() })
+            if (!canWrite) ListRow("Allow changing system settings", subtitle = "For brightness, timeout and rotation", icon = WonderIcons.Security, tint = p.warning, chevron = true, onClick = { needWrite() }, help = "Lets Control Room change settings like brightness and sound for you. Android asks once.")
             if (!canWrite && !dndAccess) PanelDivider()
             if (!dndAccess) ListRow("Allow Do Not Disturb access", subtitle = "For Do Not Disturb and silent mode", icon = WonderIcons.DoNotDisturbOn, tint = p.warning, chevron = true, onClick = { needDnd() })
         }

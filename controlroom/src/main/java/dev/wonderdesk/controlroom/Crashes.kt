@@ -158,7 +158,7 @@ fun CrashPanel() {
     val unsent = list.count { !it.optBoolean("sent") }
     Panel(title = "Crash reports", footer = "When a Wonderdesk app crashes or freezes, the details are kept here. Turn on sending to pass them to the Wonderdesk developer automatically: only the app, version, phone model, Android version and the error go out, with file names, links and email addresses removed.") {
         SwitchRow("Send crash reports automatically", auto, { on -> auto = on; CrashUpload.setAuto(context, on); if (on) CrashUpload.sendPending(context) { n -> if (n > 0) { toast("Sent $n report${if (n == 1) "" else "s"}. Thank you"); list = CrashLog.all(context) } } },
-            subtitle = "Helps get crashes fixed. Off until you turn it on", icon = WonderIcons.UploadFile, tint = Color(0xFF1E7FE8))
+            subtitle = "Helps get crashes fixed. Off until you turn it on", icon = WonderIcons.UploadFile, tint = Color(0xFF1E7FE8), help = "If an app crashes, Wonderdesk sends a short report to help fix it. It never includes your files.")
         PanelDivider()
         ListRow("What gets sent", icon = WonderIcons.Info, tint = Color(0xFF7A7F87), chevron = true, onClick = { whatsSent = true })
         PanelDivider()
