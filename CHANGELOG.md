@@ -1,5 +1,9 @@
 # Control Room changelog
 
+## v0.7.0
+
+- The background mirrors your phone: the flashlight floods it with warm light, Do Not Disturb sends it to a quiet night, and silent mode stills it
+
 ## v0.6.7
 
 - The symbols drifting in the background are smaller and fainter so they no longer crowd text; selected segments and chips are readable in every look (including Super); the warning banner at the top has a solid backing so its text is easy to read

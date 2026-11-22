@@ -140,6 +140,13 @@ private fun ControlsTab() {
     }
     var ringer by remember(tick) { mutableIntStateOf(audio.ringerMode) }
     var dnd by remember(tick) { mutableIntStateOf(nm.currentInterruptionFilter) }
+    // The scene mirrors the phone: the flashlight floods it with warm light, Do Not Disturb sends it to a quiet night, silent mode stills it.
+    SceneMoodEffect(when {
+        torch -> SceneMood(hue = 50f, tint = android.graphics.Color.argb(90, 255, 230, 120), energy = 1.3f, glyphs = listOf("✦", "☀", "•", "✧"))
+        dnd != NotificationManager.INTERRUPTION_FILTER_ALL && dnd != NotificationManager.INTERRUPTION_FILTER_UNKNOWN -> SceneMood(hue = 245f, tint = android.graphics.Color.argb(60, 70, 70, 160), energy = .4f, hush = .25f, glyphs = listOf("☾", "z", "·"))
+        ringer == AudioManager.RINGER_MODE_SILENT -> SceneMood(energy = .35f, hush = .2f, glyphs = listOf("◌", "·", "•"))
+        else -> SceneMood()
+    })
     fun needWrite() { toast("Allow Control Room to change system settings"); context.launchSafely(Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS, Uri.parse("package:${context.packageName}"))) {} }
     fun needDnd() { toast("Allow Control Room to manage Do Not Disturb"); context.launchSafely(Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)) {} }
     Page {
