@@ -44,6 +44,7 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import dev.wonderdesk.shared.*
+import kotlinx.coroutines.delay
 
 class MainActivity : WonderActivity() {
     @Composable override fun Content() = ControlRoomApp()
@@ -147,6 +148,17 @@ private fun ControlsTab() {
         ringer == AudioManager.RINGER_MODE_SILENT -> SceneMood(energy = .35f, hush = .2f, glyphs = listOf("◌", "·", "•"))
         else -> SceneMood()
     })
+    // The mixing desk in the scene follows the phone: every volume (including the volume keys) and the brightness, read twice a second.
+    SceneFeedScope()
+    SideEffect { SceneFeed.state = if (torch) "torch" else "" }
+    LaunchedEffect(Unit) {
+        val streams = intArrayOf(AudioManager.STREAM_MUSIC, AudioManager.STREAM_RING, AudioManager.STREAM_NOTIFICATION, AudioManager.STREAM_ALARM)
+        while (true) {
+            streams.forEachIndexed { i, st -> runCatching { val lo = audio.getStreamMinVolume(st); val hi = audio.getStreamMaxVolume(st); SceneFeed.values[i] = (audio.getStreamVolume(st) - lo).toFloat() / (hi - lo).coerceAtLeast(1) } }
+            runCatching { SceneFeed.values[4] = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, 128) / 255f }
+            delay(500)
+        }
+    }
     fun needWrite() { toast("Allow Control Room to change system settings"); context.launchSafely(Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS, Uri.parse("package:${context.packageName}"))) {} }
     fun needDnd() { toast("Allow Control Room to manage Do Not Disturb"); context.launchSafely(Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)) {} }
     Page {
