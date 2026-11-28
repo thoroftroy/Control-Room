@@ -240,13 +240,13 @@ private fun ControlsTab() {
             Column(Modifier.padding(horizontal = 4.dp)) {
                 fun sys(k: String, d: Int) = Settings.System.getInt(context.contentResolver, k, d) == 1
                 var touch by remember(tick) { mutableStateOf(sys(Settings.System.SOUND_EFFECTS_ENABLED, 1)) }
-                SwitchRow("Touch sounds", touch, { on -> if (!canWrite) needWrite() else { Settings.System.putInt(context.contentResolver, Settings.System.SOUND_EFFECTS_ENABLED, if (on) 1 else 0); touch = on } }, icon = WonderIcons.VolumeUp, tint = Color(0xFF1E7FE8))
+                SwitchRow("Touch sounds", touch, { on -> if (!canWrite) needWrite() else { Settings.System.putInt(context.contentResolver, Settings.System.SOUND_EFFECTS_ENABLED, if (on) 1 else 0); touch = on } }, icon = WonderIcons.VolumeUp, tint = Color(0xFF1E7FE8), help = "A soft click when you tap things on the screen. This is an Android setting, so it changes it for every app.")
                 PanelDivider()
                 var haptic by remember(tick) { mutableStateOf(sys(Settings.System.HAPTIC_FEEDBACK_ENABLED, 1)) }
-                SwitchRow("Vibrate on touch", haptic, { on -> if (!canWrite) needWrite() else { Settings.System.putInt(context.contentResolver, Settings.System.HAPTIC_FEEDBACK_ENABLED, if (on) 1 else 0); haptic = on } }, icon = WonderIcons.TouchApp, tint = Color(0xFF8E44AD))
+                SwitchRow("Vibrate on touch", haptic, { on -> if (!canWrite) needWrite() else { Settings.System.putInt(context.contentResolver, Settings.System.HAPTIC_FEEDBACK_ENABLED, if (on) 1 else 0); haptic = on } }, icon = WonderIcons.TouchApp, tint = Color(0xFF8E44AD), help = "A tiny buzz when you press keys and buttons, for every app on the phone.")
                 PanelDivider()
                 var dial by remember(tick) { mutableStateOf(sys(Settings.System.DTMF_TONE_WHEN_DIALING, 1)) }
-                SwitchRow("Dial pad tones", dial, { on -> if (!canWrite) needWrite() else { Settings.System.putInt(context.contentResolver, Settings.System.DTMF_TONE_WHEN_DIALING, if (on) 1 else 0); dial = on } }, icon = WonderIcons.Phone, tint = Color(0xFF2E9E44))
+                SwitchRow("Dial pad tones", dial, { on -> if (!canWrite) needWrite() else { Settings.System.putInt(context.contentResolver, Settings.System.DTMF_TONE_WHEN_DIALING, if (on) 1 else 0); dial = on } }, icon = WonderIcons.Phone, tint = Color(0xFF2E9E44), help = "The beeps you hear when you press numbers on the phone dialler.")
             }
             PanelDivider(0.dp)
             ListRow("Dark theme, font size and more", icon = WonderIcons.DarkMode, tint = Color(0xFF34495E), chevron = true, onClick = { context.launchSafely(Intent(Settings.ACTION_DISPLAY_SETTINGS)) {} })

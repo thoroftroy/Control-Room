@@ -1,5 +1,9 @@
 # Control Room changelog
 
+## v0.8.2
+
+- More ? buttons: the settings that were not obvious now explain in a line or two what they do and why you might want them
+
 ## v0.8.1
 
 - The moving background holds still while Battery Saver is on, so it uses next to no power then. It still changes with what the app is doing
